@@ -52,6 +52,7 @@
         </script>
 
 
+        <link rel="icon" type="image/png" href="{{ Vite::asset('resources/images/logo.png') }}">
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
