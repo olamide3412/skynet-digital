@@ -20,6 +20,7 @@ Route::inertia('/about-us','About')->name('about');
 Route::inertia('/services','Services')->name('services');
 // Public Portfolio routes
 Route::get('/portfolio', [ProjectController::class, 'portfolio'])->name('portfolio');
+Route::get('/portfolio/{project}', [ProjectController::class, 'show'])->name('portfolio.show');
 Route::inertia('/contact','Contact')->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 

@@ -1,4 +1,6 @@
 <script setup>
+import { Link } from '@inertiajs/vue3';
+
 defineProps({
     projects: {
         type: Array,
@@ -27,22 +29,20 @@ defineProps({
             </div>
 
             <div v-else class="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none">
-                <div v-for="project in projects" :key="project.id" class="flex flex-col rounded-lg shadow-lg overflow-hidden">
+                <div v-for="project in projects" :key="project.id" class="flex flex-col rounded-lg shadow-lg overflow-hidden bg-white dark:bg-gray-700 group">
                     <div class="flex-shrink-0">
                         <img v-if="project.image_path" class="h-48 w-full object-cover" :src="'/storage/' + project.image_path" :alt="project.title">
                         <div v-else class="h-48 w-full bg-gray-300 dark:bg-gray-700 flex items-center justify-center">
                             <span class="text-gray-500 dark:text-gray-400">No Image</span>
                         </div>
                     </div>
-                    <div class="flex-1 bg-white dark:bg-gray-700 p-6 flex flex-col justify-between">
+                    <div class="flex-1 p-6 flex flex-col justify-between">
                         <div class="flex-1">
-                            <p class="text-sm font-medium text-primary dark:text-secondary-200">
-                                <span class="uppercase tracking-wider">
-                                    {{ project.service }}
-                                </span>
+                            <p class="text-xs font-bold text-primary dark:text-secondary-200 uppercase tracking-wider mb-2">
+                                {{ project.service }}
                             </p>
-                            <div class="block mt-2">
-                                <p class="text-xl font-semibold text-gray-900 dark:text-white">
+                            <div class="block">
+                                <p class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-primary dark:group-hover:text-secondary-200 transition-colors">
                                     {{ project.title }}
                                 </p>
                                 <p class="mt-3 text-base text-gray-500 dark:text-gray-300 line-clamp-3">
@@ -50,19 +50,22 @@ defineProps({
                                 </p>
                             </div>
                         </div>
-                        <div class="mt-6 flex items-center justify-between">
-                             <div class="ml-1">
-                                <p class="text-sm font-medium text-gray-900 dark:text-white">
-                                    Industry: <span class="text-gray-500 dark:text-gray-300">{{ project.industry || 'General' }}</span>
+                        <div class="mt-6 flex items-center justify-between border-t border-gray-100 dark:border-gray-600 pt-4">
+                             <div>
+                                <p class="text-xs font-medium text-gray-400 dark:text-gray-400 uppercase tracking-wider">
+                                    Industry
+                                </p>
+                                <p class="text-sm font-semibold text-gray-700 dark:text-gray-200">
+                                    {{ project.industry || 'General' }}
                                 </p>
                              </div>
-                             <a v-if="project.demo_url" :href="project.demo_url" target="_blank" rel="noopener noreferrer"
-                                class="inline-flex items-center px-4 py-2 bg-primary text-white text-sm font-medium rounded-md hover:bg-primary-dark transition">
-                                <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                             
+                             <Link :href="route('portfolio.show', project.id)" class="inline-flex items-center text-sm font-semibold text-primary dark:text-secondary-200 hover:underline group-hover:underline">
+                                Read more
+                                <svg class="ml-1 w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                                 </svg>
-                                View Demo
-                             </a>
+                             </Link>
                         </div>
                     </div>
                 </div>

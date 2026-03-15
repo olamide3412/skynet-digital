@@ -63,6 +63,16 @@ class ProjectController extends Controller
     }
 
     /**
+     * Display the specified resource for Public Portfolio Show Page.
+     */
+    public function show(Project $project)
+    {
+        return Inertia::render('Portfolio/Show', [
+            'project' => $project
+        ]);
+    }
+
+    /**
      * Show the form for editing the specified resource.
      */
     public function edit(Project $project)
