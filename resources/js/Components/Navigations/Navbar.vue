@@ -17,7 +17,7 @@ const toggle = () => (isOpen.value = !isOpen.value);
         <img :src="Logo" width="50" height="35" alt="logo" />
         <div>
           <h1 class="text-primary dark:text-secondary-200 font-bold text-lg">
-            SKYNET DIGITAL
+            SKYNET DIGITAL LTD
             <span class=" hidden text-xs text-gray-600 dark:text-gray-400">Limited</span>
           </h1>
         </div>

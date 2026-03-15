@@ -7,14 +7,14 @@
         <title>{{ config('app.name', 'Skynet Digital Limited') }}</title>
 
         <meta name="description" content="Skynet Digital Limited offers professional technology solutions, networking, product development, IT training, and maintenance services. Trusted expertise for your digital growth.">
-        <meta name="keywords" content="Skynet Digital, Skynet Digital Limited, Tech Company Nigeria, Networking Services, Product Development, IT Training Nigeria, Tech Solutions Delta State">
-        <link rel="canonical" href="https://skynetdigitalhubs.com">
+        <meta name="keywords" content="Skynet Digital, Skynet Digital Limited, Tech Company Nigeria, Networking Services, Product Development, IT Training Nigeria, AI, Tech Solutions Delta State">
+        <link rel="canonical" href="https://skynetdigitalhub.com.ng">
         <meta name="robots" content="index, follow">
 
         <meta property="og:title" content="Skynet Digital Limited">
         <meta property="og:description" content="Skynet Digital Limited provides professional technology solutions, including networking, product development, and IT training.">
         <meta property="og:image" content="{{ asset('images/logo.png') }}">
-        <meta property="og:url" content="https://skynetdigitalhubs.com">
+        <meta property="og:url" content="https://skynetdigitalhub.com.ng">
 
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="Skynet Digital Limited">
@@ -28,7 +28,7 @@
                 "@type": "Organization",
                 "name": "Skynet Digital Limited",
                 "description": "Skynet Digital Limited provides professional technology solutions, including networking, product development, and IT training.",
-                "url": "https://skynetdigitalhubs.com",
+                "url": "https://skynetdigitalhub.com.ng",
                 "logo": "{{ Vite::asset('resources/images/logo.png') }}",
                 "sameAs": [
                     "https://wa.me/2348032072831"
@@ -46,7 +46,7 @@
                     "contactType": "Customer Support",
                     "areaServed": "NG",
                     "availableLanguage": "English",
-                    "email": "support@skynetdigitalhubs.com"
+                    "email": "support@skynetdigitalhub.com.ng"
                 }
             }
         </script>

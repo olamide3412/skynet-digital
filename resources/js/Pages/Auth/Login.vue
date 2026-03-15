@@ -142,7 +142,7 @@ const handleLogin = () => {
         <form @submit.prevent="handleLogin" class="mt-6 space-y-6">
           <!-- Email -->
           <TextInput name="login" label="Email or Phone Number" v-model="form.login"
-            type="text" placeholder="you@skynetdigitalhubs.com.ng" :message="form.errors.login"
+            type="text" placeholder="you@skynetdigitalhub.com.ng" :message="form.errors.login"
             autofocus autocomplete="username" :required="true"/>
            <!-- Password -->
           <TextInput name="password" label="Password" type="password"

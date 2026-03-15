@@ -44,7 +44,7 @@ import { Link } from '@inertiajs/vue3'
           </div>
           <div class="flex items-center">
             <font-awesome-icon :icon="['fas', 'envelope']" class="mr-2 text-primary" />
-            <a href="mailto:support@skynet.com" class="hover:underline">support@skynetdigitalhubs.com</a>
+            <a href="mailto:support@skynet.com" class="hover:underline">support@skynetdigitalhub.com.ng</a>
           </div>
         </address>
       </div>
