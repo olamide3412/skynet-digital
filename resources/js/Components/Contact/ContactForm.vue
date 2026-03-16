@@ -1,5 +1,12 @@
 <script setup>
-import { useForm } from '@inertiajs/vue3';
+import { useForm, usePage } from '@inertiajs/vue3';
+import { ref, onMounted, watch } from 'vue';
+import { useToast } from 'vue-toastification';
+
+const toast = useToast();
+const turnstileWidgetId = ref(null);
+const isTurnstileLoaded = ref(false);
+const turnstileError = ref('');
 
 const form = useForm({
     name: '',
@@ -7,13 +14,88 @@ const form = useForm({
     phone: '',
     service: '',
     message: '',
+    cf_turnstile_response: '',
+});
+
+// Load Cloudflare Turnstile script
+const loadTurnstile = () => {
+    if (window.turnstile) {
+        renderTurnstile();
+        return;
+    }
+
+    const script = document.createElement('script');
+    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+    script.async = true;
+    script.defer = true;
+
+    script.onload = () => {
+        isTurnstileLoaded.value = true;
+        renderTurnstile();
+    };
+
+    script.onerror = () => {
+        turnstileError.value = 'Failed to load CAPTCHA. Please refresh the page.';
+    };
+
+    document.head.appendChild(script);
+};
+
+// Render Turnstile widget
+const renderTurnstile = () => {
+    if (window.turnstile && document.getElementById('cf-turnstile-contact')) {
+        turnstileWidgetId.value = window.turnstile.render('#cf-turnstile-contact', {
+            sitekey: usePage().props.turnstileSiteKey, // Ensure this exists in HandleInertiaRequests.php
+            callback: (token) => {
+                form.cf_turnstile_response = token;
+                turnstileError.value = '';
+            },
+            'expired-callback': () => {
+                form.cf_turnstile_response = '';
+                turnstileError.value = 'CAPTCHA expired. Please verify again.';
+                resetTurnstile();
+            },
+            'error-callback': () => {
+                form.cf_turnstile_response = '';
+                turnstileError.value = 'CAPTCHA error. Please try again.';
+                resetTurnstile();
+            }
+        });
+    }
+};
+
+// Reset Turnstile widget
+const resetTurnstile = () => {
+    if (window.turnstile && turnstileWidgetId.value) {
+        window.turnstile.reset(turnstileWidgetId.value);
+    }
+};
+
+onMounted(() => {
+    loadTurnstile();
 });
 
 const submit = () => {
-    // In a real application, submit to a backend route
-    console.log('Form submitted:', form);
-    form.reset();
-    alert('Thank you for contacting us! We will get back to you shortly.');
+    if (!form.cf_turnstile_response) {
+         turnstileError.value = 'Please complete the CAPTCHA verification';
+         return;
+    }
+
+    form.post(route('contact.store'), {
+        preserveScroll: true,
+        onSuccess: () => {
+            form.reset();
+            resetTurnstile();
+            //toast.success('Thank you for contacting us! We will get back to you shortly.');
+        },
+        onError: () => {
+             toast.error('Something went wrong. Please check the form and try again.');
+             if (form.errors.cf_turnstile_response) {
+                 resetTurnstile();
+                 form.cf_turnstile_response = '';
+             }
+        }
+    });
 };
 </script>
 

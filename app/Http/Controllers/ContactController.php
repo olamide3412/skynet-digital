@@ -16,7 +16,7 @@ class ContactController extends Controller
             'email' => 'required|email|max:255',
             'phone' => 'nullable|string|max:20',
             'service' => 'nullable|string|max:100',
-            'message' => 'required|string',
+            'message' => 'required|string|max:300',
             'cf_turnstile_response' => ['required', new Turnstile()],
         ], [
             'cf_turnstile_response.required' => 'Please complete the CAPTCHA verification.',
@@ -35,7 +35,7 @@ class ContactController extends Controller
 
     public function index()
     {
-        $messages = ContactMessage::latest()->get();
+        $messages = ContactMessage::latest()->limit(50)->get();
         return Inertia::render('Admin/Contacts/Index', [
             'messages' => $messages
         ]);
