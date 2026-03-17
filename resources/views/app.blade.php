@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{ config('app.name', 'Skynet Digital Limited') }}</title>
+        <title inertia>{{ config('app.name', 'Skynet Digital Limited') }}</title>
 
         <meta name="description" content="Skynet Digital Limited offers professional technology solutions, networking, product development, IT training, and maintenance services. Trusted expertise for your digital growth.">
         <meta name="keywords" content="Skynet Digital, Skynet Digital Limited, Tech Company Nigeria, Networking Services, Product Development, IT Training Nigeria, AI, Tech Solutions Delta State">
@@ -14,6 +14,8 @@
         <meta property="og:title" content="Skynet Digital Limited">
         <meta property="og:description" content="Skynet Digital Limited provides professional technology solutions, including networking, product development, and IT training.">
         <meta property="og:image" content="{{ asset('images/logo.png') }}">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
         <meta property="og:url" content="{{ url()->current() }}">
 
         <meta name="twitter:card" content="summary_large_image">
@@ -57,6 +59,9 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
+        
+        <!-- FontAwesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <!-- Styles / Scripts -->
         @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))

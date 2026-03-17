@@ -24,7 +24,7 @@ AOS.init({
 const pinia = createPinia();
 
 createInertiaApp({
-    title: (title) => `TEXAS ${title}`,
+    title: (title) => `${title}`,
     resolve: name => {
         const pages = import.meta.glob('./Pages/**/*.vue', { eager: true })
         let page = pages[`./Pages/${name}.vue`];

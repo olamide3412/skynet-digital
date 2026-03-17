@@ -27,6 +27,12 @@ const seoImage = computed(() => {
     }
     return null; // fallback will be used by the crawler
 });
+const seoUrl = computed(() => {
+    if (typeof window !== 'undefined') {
+        return window.location.href;
+    }
+    return '';
+});
 </script>
 
 <template>
@@ -39,6 +45,8 @@ const seoImage = computed(() => {
         <meta head-key="og:description" property="og:description" :content="seoDescription" />
         <meta head-key="og:type" property="og:type" content="article" />
         <meta v-if="seoImage" head-key="og:image" property="og:image" :content="seoImage" />
+        <meta v-if="seoImage" head-key="og:image:width" property="og:image:width" content="1200" />
+        <meta v-if="seoImage" head-key="og:image:height" property="og:image:height" content="630" />
         
         <!-- Twitter -->
         <meta head-key="twitter:title" name="twitter:title" :content="seoTitle" />
@@ -99,6 +107,25 @@ const seoImage = computed(() => {
 
                     <div class="prose prose-lg dark:prose-invert max-w-none text-gray-600 dark:text-gray-300">
                         <div style="white-space: pre-wrap;">{{ project.description || 'No description provided.' }}</div>
+                    </div>
+                    
+                    <!-- Share Buttons -->
+                    <div class="mt-12 pt-8 border-t border-gray-100 dark:border-gray-800">
+                        <h3 class="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-4">Share this project</h3>
+                        <div class="flex items-center gap-4">
+                            <a :href="`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(seoUrl)}`" target="_blank" rel="noopener noreferrer" class="w-10 h-10 flex items-center justify-center rounded-full bg-[#1877F2] text-white hover:opacity-90 transition-opacity shadow-sm" aria-label="Share on Facebook">
+                                <i class="fab fa-facebook-f text-lg"></i>
+                            </a>
+                            <a :href="`https://twitter.com/intent/tweet?url=${encodeURIComponent(seoUrl)}&text=${encodeURIComponent(seoTitle)}`" target="_blank" rel="noopener noreferrer" class="w-10 h-10 flex items-center justify-center rounded-full bg-[#1DA1F2] text-white hover:opacity-90 transition-opacity shadow-sm" aria-label="Share on Twitter">
+                                <i class="fab fa-twitter text-lg"></i>
+                            </a>
+                            <a :href="`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(seoUrl)}&title=${encodeURIComponent(seoTitle)}`" target="_blank" rel="noopener noreferrer" class="w-10 h-10 flex items-center justify-center rounded-full bg-[#0A66C2] text-white hover:opacity-90 transition-opacity shadow-sm" aria-label="Share on LinkedIn">
+                                <i class="fab fa-linkedin-in text-lg"></i>
+                            </a>
+                            <a :href="`https://api.whatsapp.com/send?text=${encodeURIComponent(seoTitle + ' ' + seoUrl)}`" target="_blank" rel="noopener noreferrer" class="w-10 h-10 flex items-center justify-center rounded-full bg-[#25D366] text-white hover:opacity-90 transition-opacity shadow-sm" aria-label="Share on WhatsApp">
+                                <i class="fab fa-whatsapp text-lg"></i>
+                            </a>
+                        </div>
                     </div>
                     
                 </div>
