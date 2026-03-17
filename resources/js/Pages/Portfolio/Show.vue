@@ -17,7 +17,7 @@ const props = defineProps({
 
 defineOptions({ layout: Layout })
 
-const seoTitle = computed(() => `${props.project.title} - Portfolio | Skynet Digital Limited`);
+const seoTitle = computed(() => `${props.project.title} | Skynet Digital Limited`);
 const seoDescription = computed(() => {
     if (props.project.description) {
         return props.project.description.substring(0, 160).trim() + '...';
