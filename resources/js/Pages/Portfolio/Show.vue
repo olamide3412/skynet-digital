@@ -2,8 +2,11 @@
 import Layout from '@/Layouts/Layout.vue';
 import { Head, Link } from '@inertiajs/vue3';
 import { computed } from 'vue';
+import { useToast } from 'vue-toastification';
 import CallToAction from '@/Components/Home/CallToAction.vue';
 import Footer from '@/Components/Footer.vue';
+
+const toast = useToast();
 
 const props = defineProps({
     project: {
@@ -33,6 +36,14 @@ const seoUrl = computed(() => {
     }
     return '';
 });
+
+const copyToClipboard = () => {
+    if (typeof navigator !== 'undefined' && navigator.clipboard) {
+        navigator.clipboard.writeText(seoUrl.value)
+            .then(() => toast.success('Link copied to clipboard!'))
+            .catch(() => toast.error('Failed to copy link.'));
+    }
+};
 </script>
 
 <template>
@@ -125,6 +136,9 @@ const seoUrl = computed(() => {
                             <a :href="`https://api.whatsapp.com/send?text=${encodeURIComponent(seoTitle + ' ' + seoUrl)}`" target="_blank" rel="noopener noreferrer" class="w-10 h-10 flex items-center justify-center rounded-full bg-[#25D366] text-white hover:opacity-90 transition-opacity shadow-sm" aria-label="Share on WhatsApp">
                                 <i class="fab fa-whatsapp text-lg"></i>
                             </a>
+                            <button @click="copyToClipboard" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-600 dark:bg-gray-700 text-white hover:opacity-90 transition-opacity shadow-sm" aria-label="Copy Link">
+                                <i class="fas fa-link text-lg"></i>
+                            </button>
                         </div>
                     </div>
                     

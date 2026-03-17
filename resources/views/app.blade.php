@@ -11,17 +11,35 @@
         <link rel="canonical" href="{{ url()->current() }}">
         <meta name="robots" content="index, follow">
 
-        <meta property="og:title" content="Skynet Digital Limited">
-        <meta property="og:description" content="Skynet Digital Limited provides professional technology solutions, including networking, product development, and IT training.">
-        <meta property="og:image" content="{{ asset('images/logo.png') }}">
-        <meta property="og:image:width" content="1200">
-        <meta property="og:image:height" content="630">
-        <meta property="og:url" content="{{ url()->current() }}">
+        @isset($meta)
+            <meta property="og:title" content="{{ $meta['title'] }}">
+            <meta property="og:description" content="{{ $meta['description'] }}">
+            <meta property="og:image" content="{{ $meta['image'] }}">
+            <meta property="og:type" content="{{ $meta['type'] ?? 'website' }}">
+            <meta property="og:url" content="{{ url()->current() }}">
+            <meta property="fb:app_id" content="">
+            <meta property="og:image:width" content="1200">
+            <meta property="og:image:height" content="630">
 
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="Skynet Digital Limited">
-        <meta name="twitter:description" content="Professional technology solutions, networking, product development, and IT training.">
-        <meta name="twitter:image" content="{{ asset('images/logo.png') }}">
+            <meta name="twitter:card" content="summary_large_image">
+            <meta name="twitter:title" content="{{ $meta['title'] }}">
+            <meta name="twitter:description" content="{{ $meta['description'] }}">
+            <meta name="twitter:image" content="{{ $meta['image'] }}">
+        @else
+            <meta property="og:title" content="Skynet Digital Limited">
+            <meta property="og:description" content="Skynet Digital Limited provides professional technology solutions, including networking, product development, and IT training.">
+            <meta property="og:type" content="website">
+            <meta property="fb:app_id" content="">
+            <meta property="og:image" content="{{ asset('images/logo.png') }}">
+            <meta property="og:image:width" content="1200">
+            <meta property="og:image:height" content="630">
+            <meta property="og:url" content="{{ url()->current() }}">
+
+            <meta name="twitter:card" content="summary_large_image">
+            <meta name="twitter:title" content="Skynet Digital Limited">
+            <meta name="twitter:description" content="Professional technology solutions, networking, product development, and IT training.">
+            <meta name="twitter:image" content="{{ asset('images/logo.png') }}">
+        @endisset
 
 
         <script type="application/ld+json">
