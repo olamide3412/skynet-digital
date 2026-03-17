@@ -1,10 +1,11 @@
 <script setup>
 import Layout from '@/Layouts/Layout.vue';
 import { Head, Link } from '@inertiajs/vue3';
+import { computed } from 'vue';
 import CallToAction from '@/Components/Home/CallToAction.vue';
 import Footer from '@/Components/Footer.vue';
 
-defineProps({
+const props = defineProps({
     project: {
         type: Object,
         required: true,
@@ -12,12 +13,37 @@ defineProps({
 });
 
 defineOptions({ layout: Layout })
+
+const seoTitle = computed(() => `${props.project.title} - Portfolio | Skynet Digital Limited`);
+const seoDescription = computed(() => {
+    if (props.project.description) {
+        return props.project.description.substring(0, 160).trim() + '...';
+    }
+    return `Details about ${props.project.title} by Skynet Digital Limited.`;
+});
+const seoImage = computed(() => {
+    if (typeof window !== 'undefined' && props.project.image_path) {
+        return `${window.location.origin}/storage/${props.project.image_path}`;
+    }
+    return null; // fallback will be used by the crawler
+});
 </script>
 
 <template>
     <Head>
-        <title>{{ project.title }} - Portfolio | Skynet Digital Limited</title>
-        <meta name="description" :content="`Details about ${project.title} by Skynet Digital Limited.`" />
+        <title>{{ seoTitle }}</title>
+        <meta head-key="description" name="description" :content="seoDescription" />
+        
+        <!-- Open Graph / Facebook -->
+        <meta head-key="og:title" property="og:title" :content="seoTitle" />
+        <meta head-key="og:description" property="og:description" :content="seoDescription" />
+        <meta head-key="og:type" property="og:type" content="article" />
+        <meta v-if="seoImage" head-key="og:image" property="og:image" :content="seoImage" />
+        
+        <!-- Twitter -->
+        <meta head-key="twitter:title" name="twitter:title" :content="seoTitle" />
+        <meta head-key="twitter:description" name="twitter:description" :content="seoDescription" />
+        <meta v-if="seoImage" head-key="twitter:image" name="twitter:image" :content="seoImage" />
     </Head>
 
     <div class="relative bg-gray-50 dark:bg-gray-800 pt-16 pb-20 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8 min-h-screen">

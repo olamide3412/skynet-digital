@@ -8,13 +8,13 @@
 
         <meta name="description" content="Skynet Digital Limited offers professional technology solutions, networking, product development, IT training, and maintenance services. Trusted expertise for your digital growth.">
         <meta name="keywords" content="Skynet Digital, Skynet Digital Limited, Tech Company Nigeria, Networking Services, Product Development, IT Training Nigeria, AI, Tech Solutions Delta State">
-        <link rel="canonical" href="https://skynetdigitalhub.com.ng">
+        <link rel="canonical" href="{{ url()->current() }}">
         <meta name="robots" content="index, follow">
 
         <meta property="og:title" content="Skynet Digital Limited">
         <meta property="og:description" content="Skynet Digital Limited provides professional technology solutions, including networking, product development, and IT training.">
         <meta property="og:image" content="{{ asset('images/logo.png') }}">
-        <meta property="og:url" content="https://skynetdigitalhub.com.ng">
+        <meta property="og:url" content="{{ url()->current() }}">
 
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="Skynet Digital Limited">

@@ -38,7 +38,7 @@ defineProps({
                     </div>
                     <div class="flex-1 p-6 flex flex-col justify-between">
                         <div class="flex-1">
-                            <p class="text-xs font-bold text-primary dark:text-secondary-200 uppercase tracking-wider mb-2">
+                            <p class=" hidden text-xs font-bold text-primary dark:text-secondary-200 uppercase tracking-wider mb-2">
                                 {{ project.service }}
                             </p>
                             <div class="block">
@@ -46,7 +46,7 @@ defineProps({
                                     {{ project.title }}
                                 </p>
                                 <p class="mt-3 text-base text-gray-500 dark:text-gray-300 line-clamp-3">
-                                    {{ project.description }}
+                                    {{ project.service }}
                                 </p>
                             </div>
                         </div>
