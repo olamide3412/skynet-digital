@@ -68,7 +68,7 @@ class ProjectController extends Controller
     public function show(Project $project)
     {
         $meta = [
-            'title' => $project->title . ' - Portfolio | Skynet Digital Limited',
+            'title' => $project->title . ' | Skynet Digital Limited',
             'description' => substr(strip_tags($project->description ?? 'Details about ' . $project->title . ' by Skynet Digital Limited.'), 0, 160) . '...',
             'image' => $project->image_path ? asset('storage/' . $project->image_path) : asset('images/logo.png'),
             'type' => 'article',
