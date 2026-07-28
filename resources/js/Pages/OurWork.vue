@@ -1,7 +1,7 @@
 <script setup>
 import Layout from '@/Layouts/Layout.vue';
 import { Head } from '@inertiajs/vue3';
-import ProjectList from '@/Components/Portfolio/ProjectList.vue';
+import ProjectList from '@/Components/OurWork/ProjectList.vue';
 import CallToAction from '@/Components/Home/CallToAction.vue';
 import Footer from '@/Components/Footer.vue';
 
@@ -17,7 +17,7 @@ defineOptions({ layout: Layout })
 
 <template>
     <Head>
-        <title>Portfolio - Skynet Digital Limited</title>
+        <title>Our Work - Skynet Digital Limited</title>
         <meta name="description" content="Discover our latest projects and technical achievements at Skynet Digital Limited." />
     </Head>
 

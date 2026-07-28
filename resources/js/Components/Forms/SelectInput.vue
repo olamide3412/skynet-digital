@@ -29,7 +29,7 @@ defineProps({
 
 <template>
   <div class="mb-2">
-    <label>
+    <label class="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider mb-1">
       {{ name }}
       <span v-if="required" class="text-red-500">*</span>
     </label>
@@ -37,19 +37,19 @@ defineProps({
       v-model="model"
       :required="required"
       :disabled="disabled"
-      class="block w-full rounded-md border-0 px-4 py-3 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-500 focus:ring-2 focus:ring-inset focus:ring-blue-500 bg-white sm:text-sm"
+      class="block w-full rounded-xl border border-gray-300 dark:border-gray-600 px-4 py-3 text-slate-900 dark:text-white shadow-xs focus:ring-2 focus:ring-primary bg-white dark:bg-gray-800 text-sm font-semibold cursor-pointer"
       :class="{ '!ring-red-500': message }"
-
     >
-      <option value="">Select {{ name }}</option>
+      <option value="" class="bg-white dark:bg-gray-800 text-gray-900 dark:text-white font-semibold">Select {{ name }}</option>
       <option
         v-for="(option, index) in options"
         :key="index"
         :value="option.value"
+        class="bg-white dark:bg-gray-800 text-gray-900 dark:text-white font-semibold"
       >
         {{ option.label }}
       </option>
     </select>
-    <small class="error" v-if="message">{{ message }}</small>
+    <small class="error text-red-500 text-xs font-bold mt-1 block" v-if="message">{{ message }}</small>
   </div>
 </template>

@@ -21,7 +21,7 @@ const liClasses = 'block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gra
                 </Link>
             </li>
                 <li>
-                  <Link :href="route('admin.projects.index')" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Manage Projects</Link>
+                  <Link :href="route('admin.projects.index')" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Our Work</Link>
                 </li>
                 <li>
                   <Link :href="route('admin.contacts.index')" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Contact Messages</Link>

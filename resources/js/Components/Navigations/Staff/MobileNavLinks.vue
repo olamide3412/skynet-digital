@@ -17,7 +17,7 @@ const liClasses = 'block px-2 py-0 text-gray-700 hover:bg-gray-100 dark:text-gra
   </li>
   <li>
     <Link :href="route('admin.projects.index')" :class="liClasses" @click="$emit('close')">
-      Manage Projects
+      Our Work
     </Link>
   </li>
   <li>

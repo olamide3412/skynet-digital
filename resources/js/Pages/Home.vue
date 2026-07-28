@@ -8,6 +8,13 @@ import Layout from '@/Layouts/Layout.vue';
 import Footer from '@/Components/Footer.vue';
 import { Head } from '@inertiajs/vue3';
 
+defineProps({
+    teamMembers: {
+        type: Array,
+        default: () => [],
+    },
+});
+
 defineOptions({ layout: Layout })
 </script>
 
@@ -21,7 +28,7 @@ defineOptions({ layout: Layout })
         <HeroSection/>
         <CoreServices/>
         <WhyChooseUs/>
-        <MeetOurTeam/>
+        <MeetOurTeam :team-members="teamMembers" />
         <CallToAction/>
         <Footer/>
     </div>

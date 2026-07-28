@@ -44,16 +44,16 @@ class HandleInertiaRequests extends Middleware
                 'check' => $this->isAuthenticated(),
                 'type' => $this->getAuthType(),
             ],
-             'flash' => [
-                'success' => fn () => $request->session()->get('success'),
-                'error' => fn () => $request->session()->get('error'),
-                'message' => fn () => $request->session()->get('message')
+            'flash' => [
+                'success' => fn() => $request->session()->get('success'),
+                'error' => fn() => $request->session()->get('error'),
+                'message' => fn() => $request->session()->get('message')
             ],
             'support' => [
                 'phone' => '+2348032072831',
                 'phone_whatsapp' => '2348032072831', //'2348151702840' +234 803 207 2831,
                 'phone_formatted' => '+234 803 207 2831',
-                'email' => 'support@skynetdigitalhub.com.ng',
+                'email' => 'support@skynetdigitalltd.com',
                 'location' => 'Delta State, Nigeria'
             ],
             'csrf_token' => csrf_token(),
@@ -63,18 +63,20 @@ class HandleInertiaRequests extends Middleware
 
     protected function getAuthUser($guard)
     {
-        return fn () => Auth::guard($guard)->check() ? Auth::guard($guard)->user() : null;
+        return fn() => Auth::guard($guard)->check() ? Auth::guard($guard)->user() : null;
     }
 
     protected function isAuthenticated()
     {
-        return fn () => Auth::guard('web')->check() || Auth::guard('client')->check();
+        return fn() => Auth::guard('web')->check() || Auth::guard('client')->check();
     }
 
     protected function getAuthType()
     {
-        if (Auth::guard('web')->check()) return 'staff';
-        if (Auth::guard('client')->check()) return 'client';
+        if (Auth::guard('web')->check())
+            return 'staff';
+        if (Auth::guard('client')->check())
+            return 'client';
         return null;
     }
 }

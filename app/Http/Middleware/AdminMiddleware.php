@@ -41,11 +41,11 @@ class AdminMiddleware
             return $this->unauthorizedResponse($request, 'Profile Suspended');
         }
 
-        if(Auth::check() && Auth::user()->role === RoleEnums::Administrator->value){
-            return $next($request);
-        }
-
-        if(Auth::check() && Auth::user()->role === RoleEnums::SuperAdministrator->value ){
+        if(Auth::check() && in_array(Auth::user()->role, [
+            RoleEnums::Staff->value,
+            RoleEnums::Administrator->value,
+            RoleEnums::SuperAdministrator->value
+        ])){
             return $next($request);
         }
 
