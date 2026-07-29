@@ -18,11 +18,14 @@
         <meta property="og:title" content="{{ $meta['title'] }}">
         <meta property="og:description" content="{{ $meta['description'] }}">
         <meta property="og:image" content="{{ $meta['image'] }}">
-        <meta property="og:type" content="{{ $meta['type'] ?? 'website' }}">
-        <meta property="og:url" content="{{ url()->current() }}">
-        <meta property="fb:app_id" content="1440937930739472">
+        <meta property="og:image:secure_url" content="{{ $meta['image'] }}">
+        <meta property="og:image:type" content="{{ $meta['image_type'] ?? 'image/jpeg' }}">
         <meta property="og:image:width" content="1200">
         <meta property="og:image:height" content="630">
+        <meta property="og:type" content="{{ $meta['type'] ?? 'website' }}">
+        <meta property="og:url" content="{{ url()->current() }}">
+        <meta property="og:site_name" content="Skynet Digital Limited">
+        <meta property="fb:app_id" content="1440937930739472">
 
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="{{ $meta['title'] }}">
@@ -35,9 +38,12 @@
         <meta property="og:type" content="website">
         <meta property="fb:app_id" content="1440937930739472">
         <meta property="og:image" content="{{ asset('images/logo.png') }}">
+        <meta property="og:image:secure_url" content="{{ asset('images/logo.png') }}">
+        <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="1200">
         <meta property="og:image:height" content="630">
         <meta property="og:url" content="{{ url()->current() }}">
+        <meta property="og:site_name" content="Skynet Digital Limited">
 
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="Skynet Digital Limited">

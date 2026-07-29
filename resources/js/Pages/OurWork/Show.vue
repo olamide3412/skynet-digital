@@ -172,7 +172,10 @@ const copyToClipboard = () => {
         <meta head-key="og:description" property="og:description" :content="seoDescription" />
         <meta head-key="og:type" property="og:type" content="article" />
         <meta head-key="og:url" property="og:url" :content="seoUrl" />
+        <meta head-key="og:site_name" property="og:site_name" content="Skynet Digital Limited" />
         <meta v-if="seoImage" head-key="og:image" property="og:image" :content="seoImage" />
+        <meta v-if="seoImage" head-key="og:image:secure_url" property="og:image:secure_url" :content="seoImage" />
+        <meta v-if="seoImage" head-key="og:image:type" property="og:image:type" content="image/jpeg" />
         <meta v-if="seoImage" head-key="og:image:width" property="og:image:width" content="1200" />
         <meta v-if="seoImage" head-key="og:image:height" property="og:image:height" content="630" />
         

@@ -126,6 +126,15 @@ class ProjectController extends Controller
         $rawDesc = $project->meta_description ?: strip_tags($project->description ?? '');
         $description = Str::limit(trim(preg_replace('/\s+/', ' ', $rawDesc)), 160);
         $image = $project->image_path ? asset('storage/' . $project->image_path) : asset('images/logo.png');
+        
+        $imageType = 'image/jpeg';
+        if ($project->image_path) {
+            $ext = strtolower(pathinfo($project->image_path, PATHINFO_EXTENSION));
+            if ($ext === 'png') $imageType = 'image/png';
+            elseif ($ext === 'webp') $imageType = 'image/webp';
+            elseif ($ext === 'gif') $imageType = 'image/gif';
+        }
+
         $url = route('our-work.show', $project->id);
         $keywords = $project->meta_keywords ?: implode(', ', array_filter([$project->category, $project->service, $project->industry, 'Skynet Digital Limited', 'Case Study']));
 
@@ -133,6 +142,7 @@ class ProjectController extends Controller
             'title' => $title,
             'description' => $description,
             'image' => $image,
+            'image_type' => $imageType,
             'url' => $url,
             'type' => 'article',
             'keywords' => $keywords,
@@ -215,6 +225,14 @@ class ProjectController extends Controller
                 Storage::disk('public')->delete($project->image_path);
             }
             $validated['image_path'] = $request->file('image_path')->store('projects', 'public');
+        } elseif ($request->boolean('remove_cover_image')) {
+            if ($project->image_path) {
+                Storage::disk('public')->delete($project->image_path);
+            }
+            $validated['image_path'] = null;
+        } else {
+            // Preserve existing cover image - do not overwrite with null
+            unset($validated['image_path']);
         }
 
         $validated['is_published'] = $request->boolean('is_published', true);

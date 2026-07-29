@@ -58,6 +58,7 @@ const form = useForm({
     media_urls: [],
     removed_media_ids: [],
     user_id: props.project.user_id || null,
+    remove_cover_image: false,
     _method: 'PUT',
 });
 
@@ -120,12 +121,14 @@ const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
         form.image_path = file;
+        form.remove_cover_image = false;
         imagePreview.value = URL.createObjectURL(file);
     }
 };
 
 const removeImage = () => {
     form.image_path = null;
+    form.remove_cover_image = true;
     imagePreview.value = null;
     if (fileInput.value) {
         fileInput.value.value = '';
