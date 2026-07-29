@@ -62,6 +62,30 @@ const getInitials = (name) => {
     return name.substring(0, 2).toUpperCase();
 };
 
+const formatDescriptionSnippet = (desc) => {
+    if (!desc) return '';
+    let text = desc;
+    
+    // Strip markdown headings and bullet symbols
+    text = text.replace(/^#+\s+/gm, '');
+    text = text.replace(/^\s*[-*]\s+/gm, '');
+    text = text.replace(/^>\s+/gm, '');
+    
+    // Parse bold (**text**)
+    text = text.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-gray-900 dark:text-white">$1</strong>');
+    
+    // Parse italic (*text*)
+    text = text.replace(/\*(.*?)\*/g, '<em class="italic">$1</em>');
+    
+    // Parse strikethrough (~~text~~)
+    text = text.replace(/~~(.*?)~~/g, '<del class="line-through opacity-75">$1</del>');
+    
+    // Parse markdown links [text](url) -> text
+    text = text.replace(/\[(.*?)\]\((.*?)\)/g, '$1');
+
+    return text;
+};
+
 const togglePublish = (project) => {
     if (!canEditProject(project)) return;
     form.patch(route('admin.projects.toggle-publish', project.id), {
@@ -385,9 +409,11 @@ const deleteProject = (id) => {
                             </div>
                         </div>
 
-                        <p v-if="project.description" class="text-xs text-gray-600 dark:text-gray-300 line-clamp-2 leading-relaxed">
-                            {{ project.description }}
-                        </p>
+                        <p 
+                            v-if="project.description" 
+                            v-html="formatDescriptionSnippet(project.description)"
+                            class="text-xs text-gray-600 dark:text-gray-300 line-clamp-2 leading-relaxed"
+                        ></p>
                     </div>
                 </div>
 
