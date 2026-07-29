@@ -71,7 +71,7 @@ const toggle = () => (isOpen.value = !isOpen.value);
               :href="route('login')" 
               class="px-4 py-2 border border-gray-300 dark:border-gray-700 hover:border-primary text-gray-800 dark:text-gray-200 hover:text-primary dark:hover:text-white rounded-xl text-xs font-bold transition"
             >
-              Staff Portal Login
+              Login
             </Link>
           </template>
 
@@ -123,7 +123,7 @@ const toggle = () => (isOpen.value = !isOpen.value);
           </template>
           <template v-else>
             <Link :href="route('login')" @click="toggle" class="w-full py-3 text-center border border-gray-300 dark:border-gray-700 text-gray-800 dark:text-gray-200 font-bold rounded-xl block">
-              Staff Portal Login
+              Login
             </Link>
           </template>
         </div>
