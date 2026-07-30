@@ -36,6 +36,15 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        $settings = \App\Models\Setting::pluck('value', 'key')->all();
+
+        $phone = $settings['contact_phone'] ?? '+234 803 207 2831';
+        $whatsapp = $settings['contact_whatsapp'] ?? '2348032072831';
+        $email = $settings['contact_email'] ?? 'info@skynetdigital.com';
+        $location = $settings['contact_address'] ?? 'Delta State, Nigeria';
+        $hours = $settings['contact_hours'] ?? 'Monday – Friday: 8:00 AM – 6:00 PM';
+        $rcNumber = $settings['rc_number'] ?? 'RC 9168845';
+
         return [
             ...parent::share($request),
             'auth' => [
@@ -50,12 +59,16 @@ class HandleInertiaRequests extends Middleware
                 'message' => fn() => $request->session()->get('message')
             ],
             'support' => [
-                'phone' => '+2348032072831',
-                'phone_whatsapp' => '2348032072831', //'2348151702840' +234 803 207 2831,
-                'phone_formatted' => '+234 803 207 2831',
-                'email' => 'support@skynetdigitalltd.com',
-                'location' => 'Delta State, Nigeria'
+                'phone' => $phone,
+                'phone_whatsapp' => preg_replace('/[^0-9]/', '', $whatsapp),
+                'phone_whatsapp_formatted' => $whatsapp,
+                'phone_formatted' => $phone,
+                'email' => $email,
+                'location' => $location,
+                'hours' => $hours,
+                'rc_number' => $rcNumber,
             ],
+            'settings' => $settings,
             'csrf_token' => csrf_token(),
             'turnstileSiteKey' => config('services.turnstile.site_key'),
         ];

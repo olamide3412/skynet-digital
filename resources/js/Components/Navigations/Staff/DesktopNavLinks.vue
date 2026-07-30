@@ -26,6 +26,11 @@ const liClasses = 'block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-gra
                 <li>
                   <Link :href="route('admin.contacts.index')" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Contact Messages</Link>
                 </li>
+            <li v-if="$page.props.auth.user?.role === 'super administrator'">
+                <Link :href="route('admin.settings.index')" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
+                    Settings
+                </Link>
+            </li>
             <li>
                 <Link :href="route('log.index')" :class="liClasses">
                     Logs

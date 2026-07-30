@@ -53,7 +53,10 @@ Route::middleware(['auth', 'admin'])->group(function (){
     Route::patch('/admin/testimonials/{testimonial}/toggle-approve', [\App\Http\Controllers\TestimonialController::class, 'toggleApprove'])->name('admin.testimonials.toggle-approve');
     Route::delete('/admin/testimonials/{testimonial}', [\App\Http\Controllers\TestimonialController::class, 'destroy'])->name('admin.testimonials.destroy');
 
-    // Super Admin Routes (User Management & Team Management)
+    // Settings Route (Viewable by all admin roles)
+    Route::get('/settings', [\App\Http\Controllers\SettingController::class, 'index'])->name('admin.settings.index');
+
+    // Super Admin Routes (User Management, Team Management & System Settings Update)
     Route::middleware(['super_admin'])->group(function () {
         Route::get('/users', [UserController::class, 'index'])->name('admin.users.index');
         Route::post('/users', [UserController::class, 'store'])->name('admin.users.store');
@@ -67,17 +70,20 @@ Route::middleware(['auth', 'admin'])->group(function (){
         Route::post('/team-members/{teamMember}', [\App\Http\Controllers\TeamMemberController::class, 'update'])->name('admin.team.update');
         Route::patch('/team-members/{teamMember}/toggle-active', [\App\Http\Controllers\TeamMemberController::class, 'toggleActive'])->name('admin.team.toggle-active');
         Route::delete('/team-members/{teamMember}', [\App\Http\Controllers\TeamMemberController::class, 'destroy'])->name('admin.team.destroy');
+
+        Route::post('/settings', [\App\Http\Controllers\SettingController::class, 'update'])->name('admin.settings.update');
     });
 
+    // Admin Contact Routes
+    Route::get('/contacts', [ContactController::class, 'index'])->name('admin.contacts.index');
+
+    // Logs Route
     Route::get('/logs', [LogController::class, 'index'])->name('log.index');
 
     // Profile Routes
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::put('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password.update');
-
-    // Admin Contact Routes
-    Route::get('/contacts', [ContactController::class, 'index'])->name('admin.contacts.index');
 
 });
 

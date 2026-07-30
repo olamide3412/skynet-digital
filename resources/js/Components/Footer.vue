@@ -54,19 +54,19 @@ import { Link } from '@inertiajs/vue3';
           <div class="space-y-2">
             <div class="flex items-center">
               <span class="font-bold text-gray-400 mr-2">Location:</span>
-              <span>Delta State, Nigeria</span>
+              <span>{{ $page.props.support?.location || 'Delta State, Nigeria' }}</span>
             </div>
             <div class="flex items-center">
               <span class="font-bold text-gray-400 mr-2">Phone:</span>
-              <a href="tel:+2348032072831" class="hover:text-primary transition font-semibold">+234 803 207 2831</a>
+              <a :href="'tel:' + ($page.props.support?.phone || '+2348032072831')" class="hover:text-primary transition font-semibold">{{ $page.props.support?.phone || '+234 803 207 2831' }}</a>
             </div>
             <div class="flex items-center">
               <span class="font-bold text-gray-400 mr-2">Email:</span>
-              <a href="mailto:support@skynetdigitalltd.com" class="hover:text-primary transition font-semibold">support@skynetdigitalltd.com</a>
+              <a :href="'mailto:' + ($page.props.support?.email || 'info@skynetdigital.com')" class="hover:text-primary transition font-semibold">{{ $page.props.support?.email || 'info@skynetdigital.com' }}</a>
             </div>
             <div class="flex items-center">
               <span class="font-bold text-gray-400 mr-2">RC Number:</span>
-              <span class="font-bold text-primary dark:text-secondary-200">RC 9168845</span>
+              <span class="font-bold text-primary dark:text-secondary-200">{{ $page.props.support?.rc_number || 'RC 9168845' }}</span>
             </div>
           </div>
         </address>
