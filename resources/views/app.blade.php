@@ -14,41 +14,44 @@
     <link rel="canonical" href="{{ url()->current() }}">
     <meta name="robots" content="index, follow">
 
-    @isset($meta)
-        <meta property="og:title" content="{{ $meta['title'] }}">
-        <meta property="og:description" content="{{ $meta['description'] }}">
-        <meta property="og:image" content="{{ $meta['image'] }}">
-        <meta property="og:image:secure_url" content="{{ $meta['image'] }}">
-        <meta property="og:image:type" content="{{ $meta['image_type'] ?? 'image/jpeg' }}">
-        <meta property="og:image:width" content="1200">
-        <meta property="og:image:height" content="630">
-        <meta property="og:type" content="{{ $meta['type'] ?? 'website' }}">
-        <meta property="og:url" content="{{ url()->current() }}">
-        <meta property="og:site_name" content="Skynet Digital Limited">
-        <meta property="fb:app_id" content="1440937930739472">
+@php
+    $defaultOgImage = url('images/og-image.png');
+    if (str_starts_with($defaultOgImage, 'http://')) {
+        $defaultOgImage = 'https://' . substr($defaultOgImage, 7);
+    }
 
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="{{ $meta['title'] }}">
-        <meta name="twitter:description" content="{{ $meta['description'] }}">
-        <meta name="twitter:image" content="{{ $meta['image'] }}">
-    @else
-        <meta property="og:title" content="Skynet Digital Limited">
-        <meta property="og:description" content="Skynet Digital Limited provides professional technology solutions, including networking, product development, and IT training.">
-        <meta property="og:type" content="website">
-        <meta property="fb:app_id" content="1440937930739472">
-        <meta property="og:image" content="{{ url('images/og-image.png') }}">
-        <meta property="og:image:secure_url" content="{{ url('images/og-image.png') }}">
-        <meta property="og:image:type" content="image/png">
-        <meta property="og:image:width" content="1200">
-        <meta property="og:image:height" content="630">
-        <meta property="og:url" content="{{ url()->current() }}">
-        <meta property="og:site_name" content="Skynet Digital Limited">
+    $ogTitle = isset($meta['title']) ? $meta['title'] : 'Skynet Digital Limited';
+    $ogDescription = isset($meta['description']) ? $meta['description'] : 'Skynet Digital Limited provides professional technology solutions, including networking, product development, IT training, and maintenance services.';
+    $ogImage = isset($meta['image']) ? $meta['image'] : $defaultOgImage;
+    if (str_starts_with($ogImage, 'http://')) {
+        $ogImage = 'https://' . substr($ogImage, 7);
+    }
+    $ogImageType = isset($meta['image_type']) ? $meta['image_type'] : 'image/png';
+    $ogType = isset($meta['type']) ? $meta['type'] : 'website';
+    $ogUrl = url()->current();
+    if (str_starts_with($ogUrl, 'http://')) {
+        $ogUrl = 'https://' . substr($ogUrl, 7);
+    }
+@endphp
 
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="Skynet Digital Limited">
-        <meta name="twitter:description" content="Professional technology solutions, networking, product development, and IT training.">
-        <meta name="twitter:image" content="{{ url('images/og-image.png') }}">
-    @endisset
+    <!-- Open Graph / Facebook / WhatsApp Meta Tags -->
+    <meta property="og:site_name" content="Skynet Digital Limited">
+    <meta property="og:type" content="{{ $ogType }}">
+    <meta property="og:title" content="{{ $ogTitle }}">
+    <meta property="og:description" content="{{ $ogDescription }}">
+    <meta property="og:url" content="{{ $ogUrl }}">
+    <meta property="og:image" content="{{ $ogImage }}">
+    <meta property="og:image:secure_url" content="{{ $ogImage }}">
+    <meta property="og:image:type" content="{{ $ogImageType }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="fb:app_id" content="1440937930739472">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $ogTitle }}">
+    <meta name="twitter:description" content="{{ $ogDescription }}">
+    <meta name="twitter:image" content="{{ $ogImage }}">
 
 
     <script type="application/ld+json">
