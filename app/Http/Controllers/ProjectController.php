@@ -106,9 +106,17 @@ class ProjectController extends Controller
     public function ourWork()
     {
         $projects = Project::where('is_published', true)->with(['media', 'user'])->latest()->get();
+        $meta = [
+            'title' => 'Our Work | Skynet Digital Limited',
+            'description' => 'Explore our portfolio of successful tech projects, client solutions, and case studies at Skynet Digital Limited.',
+            'image' => url('images/og-image.png'),
+            'image_type' => 'image/png',
+            'type' => 'website',
+            'url' => route('our-work'),
+        ];
         return Inertia::render('OurWork', [
             'projects' => $projects
-        ]);
+        ])->withViewData(['meta' => $meta]);
     }
 
     /**

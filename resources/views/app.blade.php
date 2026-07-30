@@ -33,12 +33,11 @@
         <meta name="twitter:image" content="{{ $meta['image'] }}">
     @else
         <meta property="og:title" content="Skynet Digital Limited">
-        <meta property="og:description"
-            content="Skynet Digital Limited provides professional technology solutions, including networking, product development, and IT training.">
+        <meta property="og:description" content="Skynet Digital Limited provides professional technology solutions, including networking, product development, and IT training.">
         <meta property="og:type" content="website">
         <meta property="fb:app_id" content="1440937930739472">
-        <meta property="og:image" content="{{ asset('images/logo.png') }}">
-        <meta property="og:image:secure_url" content="{{ asset('images/logo.png') }}">
+        <meta property="og:image" content="{{ url('images/og-image.png') }}">
+        <meta property="og:image:secure_url" content="{{ url('images/og-image.png') }}">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="1200">
         <meta property="og:image:height" content="630">
@@ -47,9 +46,8 @@
 
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="Skynet Digital Limited">
-        <meta name="twitter:description"
-            content="Professional technology solutions, networking, product development, and IT training.">
-        <meta name="twitter:image" content="{{ asset('images/logo.png') }}">
+        <meta name="twitter:description" content="Professional technology solutions, networking, product development, and IT training.">
+        <meta name="twitter:image" content="{{ url('images/og-image.png') }}">
     @endisset
 
 

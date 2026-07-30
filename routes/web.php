@@ -13,9 +13,17 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     $teamMembers = \App\Models\TeamMember::where('is_active', true)->orderBy('order', 'asc')->orderBy('id', 'asc')->get();
+    $meta = [
+        'title' => 'Skynet Digital Limited | Professional Tech Solutions',
+        'description' => 'Skynet Digital Limited provides professional technology solutions, including networking, product development, IT training, and cloud services.',
+        'image' => url('images/og-image.png'),
+        'image_type' => 'image/png',
+        'type' => 'website',
+        'url' => url('/'),
+    ];
     return Inertia::render('Home', [
         'teamMembers' => $teamMembers
-    ]);
+    ])->withViewData(['meta' => $meta]);
 })->name('home');
 
 
