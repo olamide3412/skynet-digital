@@ -14,25 +14,25 @@
     <link rel="canonical" href="{{ url()->current() }}">
     <meta name="robots" content="index, follow">
 
-@php
-    $defaultOgImage = url('images/og-image.png');
-    if (str_starts_with($defaultOgImage, 'http://')) {
-        $defaultOgImage = 'https://' . substr($defaultOgImage, 7);
-    }
+    @php
+        $defaultOgImage = url('images/logo.png');
+        if (str_starts_with($defaultOgImage, 'http://')) {
+            $defaultOgImage = 'https://' . substr($defaultOgImage, 7);
+        }
 
-    $ogTitle = isset($meta['title']) ? $meta['title'] : 'Skynet Digital Limited';
-    $ogDescription = isset($meta['description']) ? $meta['description'] : 'Skynet Digital Limited provides professional technology solutions, including networking, product development, IT training, and maintenance services.';
-    $ogImage = isset($meta['image']) ? $meta['image'] : $defaultOgImage;
-    if (str_starts_with($ogImage, 'http://')) {
-        $ogImage = 'https://' . substr($ogImage, 7);
-    }
-    $ogImageType = isset($meta['image_type']) ? $meta['image_type'] : 'image/png';
-    $ogType = isset($meta['type']) ? $meta['type'] : 'website';
-    $ogUrl = url()->current();
-    if (str_starts_with($ogUrl, 'http://')) {
-        $ogUrl = 'https://' . substr($ogUrl, 7);
-    }
-@endphp
+        $ogTitle = isset($meta['title']) ? $meta['title'] : 'Skynet Digital Limited';
+        $ogDescription = isset($meta['description']) ? $meta['description'] : 'Skynet Digital Limited provides professional technology solutions, including networking, product development, IT training, and maintenance services.';
+        $ogImage = isset($meta['image']) ? $meta['image'] : $defaultOgImage;
+        if (str_starts_with($ogImage, 'http://')) {
+            $ogImage = 'https://' . substr($ogImage, 7);
+        }
+        $ogImageType = isset($meta['image_type']) ? $meta['image_type'] : 'image/png';
+        $ogType = isset($meta['type']) ? $meta['type'] : 'website';
+        $ogUrl = url()->current();
+        if (str_starts_with($ogUrl, 'http://')) {
+            $ogUrl = 'https://' . substr($ogUrl, 7);
+        }
+    @endphp
 
     <!-- Open Graph / Facebook / WhatsApp Meta Tags -->
     <meta property="og:site_name" content="Skynet Digital Limited">

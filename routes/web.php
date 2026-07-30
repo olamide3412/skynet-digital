@@ -16,7 +16,7 @@ Route::get('/', function () {
     $meta = [
         'title' => 'Skynet Digital Limited | Professional Tech Solutions',
         'description' => 'Skynet Digital Limited provides professional technology solutions, including networking, product development, IT training, and cloud services.',
-        'image' => url('images/og-image.png'),
+        'image' => url('images/logo.png'),
         'image_type' => 'image/png',
         'type' => 'website',
         'url' => url('/'),
