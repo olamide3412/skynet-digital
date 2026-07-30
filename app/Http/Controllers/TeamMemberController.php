@@ -47,6 +47,7 @@ class TeamMemberController extends Controller
         if ($request->hasFile('image')) {
             $validated['image_path'] = $request->file('image')->store('team', 'public');
         }
+        unset($validated['image']);
 
         $validated['is_active'] = $request->boolean('is_active', true);
         $validated['order'] = $validated['order'] ?? 0;
@@ -83,6 +84,7 @@ class TeamMemberController extends Controller
             }
             $validated['image_path'] = $request->file('image')->store('team', 'public');
         }
+        unset($validated['image']);
 
         $validated['is_active'] = $request->boolean('is_active', true);
 
