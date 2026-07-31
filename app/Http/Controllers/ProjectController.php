@@ -61,6 +61,9 @@ class ProjectController extends Controller
         $validated['is_published'] = $request->boolean('is_published', true);
         $validated['user_id'] = auth()->id();
 
+        // Remove media fields not belonging to the projects table
+        unset($validated['media_files'], $validated['media_urls']);
+
         $project = Project::create($validated);
 
         // Log action
@@ -251,6 +254,10 @@ class ProjectController extends Controller
         }
 
         $oldOwnerId = $project->user_id;
+
+        // Remove media fields not belonging to the projects table
+        unset($validated['media_files'], $validated['media_urls'], $validated['removed_media_ids']);
+
         $project->update($validated);
 
         // Build log message
